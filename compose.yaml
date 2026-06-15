@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: organigroup-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-organigroup}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME:-organigroup}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+    networks:
+      - default
+
+  app:
+    container_name: organigroup-app
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: organigroup-app:latest
+    environment:
+      - PORT=3000
+      - DATABASE_URL=postgresql://${DB_USER:-organigroup}:${DB_PASSWORD}@db:5432/${DB_NAME:-organigroup}?schema=public
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - default
+      - proxy
+
+volumes:
+  pgdata:
+
+networks:
+  proxy:
+    external: true
