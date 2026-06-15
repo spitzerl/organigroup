@@ -34,7 +34,7 @@ export default function MainLayout({
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-background/20">
+    <div className="flex min-h-screen flex-col">
       {/* Navigation Bar */}
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/70 backdrop-blur-xl">
         <div className="container mx-auto flex h-16 items-center justify-between px-3 sm:px-8">
@@ -42,7 +42,7 @@ export default function MainLayout({
             <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl bg-gradient-to-br from-primary via-accent-foreground to-accent text-primary-foreground font-black text-base sm:text-lg transition-transform group-hover:scale-105 shadow-md shadow-accent/10">
               O
             </div>
-            <span className="text-lg sm:text-xl font-extrabold tracking-tight text-foreground hidden xs:inline-block">
+            <span className="text-lg sm:text-xl font-extrabold tracking-tight text-foreground">
               Organigroup
             </span>
           </Link>
@@ -84,8 +84,8 @@ export default function MainLayout({
                   Paramètres
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-destructive rounded-xl cursor-pointer font-semibold">
-                  <Link href="/" className="w-full">Se déconnecter</Link>
+                <DropdownMenuItem render={<Link href="/" />} className="text-destructive rounded-xl cursor-pointer font-semibold">
+                  Se déconnecter
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -109,7 +109,7 @@ export default function MainLayout({
               ? "text-primary scale-105 font-bold" 
               : "text-muted-foreground hover:text-foreground"
           )}>
-            <Calendar className="h-5.5 w-5.5 mb-1 stroke-[2.2]" />
+            <Calendar className="h-5 w-5 mb-1 stroke-[2.2]" />
             <span>Événements</span>
           </Link>
 
@@ -119,7 +119,7 @@ export default function MainLayout({
               ? "text-primary scale-105 font-bold" 
               : "text-muted-foreground hover:text-foreground"
           )}>
-            <Users className="h-5.5 w-5.5 mb-1 stroke-[2.2]" />
+            <Users className="h-5 w-5 mb-1 stroke-[2.2]" />
             <span>Groupes</span>
           </Link>
         </div>

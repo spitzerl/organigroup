@@ -41,7 +41,16 @@ export default function RootLayout({
           })()
         `}} />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col relative">
+        {/* Arrière-plan organique fixe avec effet glassmorphism profond */}
+        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none">
+          {/* Blob jaune/miel en haut à gauche */}
+          <div className="absolute top-[-15%] left-[-15%] h-[50vw] w-[50vw] min-h-[450px] min-w-[450px] max-h-[700px] max-w-[700px] rounded-full bg-[rgba(255,216,128,0.28)] dark:bg-[rgba(255,216,128,0.08)] blur-[80px] sm:blur-[130px]" />
+          {/* Blob vert sauge en bas à droite */}
+          <div className="absolute bottom-[-15%] right-[-15%] h-[55vw] w-[55vw] min-h-[500px] min-w-[500px] max-h-[800px] max-w-[800px] rounded-full bg-[rgba(94,186,125,0.22)] dark:bg-[rgba(94,186,125,0.15)] blur-[90px] sm:blur-[140px]" />
+          {/* Blob terracotta léger à droite */}
+          <div className="absolute top-[30%] right-[5%] h-[35vw] w-[35vw] min-h-[300px] min-w-[300px] max-h-[500px] max-w-[500px] rounded-full bg-[rgba(217,83,79,0.08)] dark:bg-[rgba(217,83,79,0.04)] blur-[80px] sm:blur-[110px]" />
+        </div>
         <KillSW />
         {children}
       </body>

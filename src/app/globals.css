@@ -125,13 +125,11 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    background-image: radial-gradient(at 0% 0%, oklch(0.86 0.13 85 / 0.18) 0px, transparent 55%),
-                      radial-gradient(at 100% 100%, oklch(0.925 0.035 140 / 0.25) 0px, transparent 55%);
   }
   .dark body {
-    background-image: radial-gradient(at 0% 0%, oklch(0.86 0.13 85 / 0.06) 0px, transparent 55%),
-                      radial-gradient(at 100% 100%, oklch(0.25 0.02 140 / 0.15) 0px, transparent 55%);
+    /* No gradient background-image here, managed by fixed container */
   }
+
   html {
     @apply font-sans;
   }

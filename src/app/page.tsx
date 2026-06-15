@@ -15,13 +15,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col bg-background overflow-x-hidden relative">
-      {/* Decorative Warm Blobs */}
-      <div className="absolute top-0 left-0 -z-10 h-full w-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-[rgba(255,216,128,0.25)] dark:bg-[rgba(255,216,128,0.1)] opacity-60 blur-[100px]"></div>
-        <div className="absolute top-[20%] right-[-10%] h-[700px] w-[700px] rounded-full bg-[rgba(217,83,79,0.12)] dark:bg-[rgba(217,83,79,0.05)] opacity-50 blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] left-[20%] h-[600px] w-[600px] rounded-full bg-[rgba(255,190,100,0.18)] dark:bg-[rgba(255,190,100,0.05)] opacity-50 blur-[100px]"></div>
-      </div>
+    <main className="flex min-h-screen flex-col bg-transparent overflow-x-hidden relative">
 
       {/* Header */}
       <header className="w-full border-b border-border/30 bg-background/50 backdrop-blur-md sticky top-0 z-50 transition-all">
