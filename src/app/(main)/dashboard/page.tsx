@@ -193,17 +193,17 @@ export default function DashboardPage() {
 
       {/* Tabs and Event Cards Grid */}
       <Tabs defaultValue="upcoming" className="w-full">
-        <div className="w-full border-b border-border/40 pb-5 mb-8">
-          <TabsList className="w-full bg-secondary/50 border border-border/30 p-2 rounded-2xl flex gap-2 h-auto">
+        <div className="w-full border-b border-border/20 pb-6 mb-8">
+          <TabsList className="w-full bg-card/65 dark:bg-card/30 backdrop-blur-md border border-border/40 p-1.5 rounded-2xl flex gap-1.5 h-auto shadow-[inset_0_1px_3px_rgba(0,0,0,0.02)]">
             <TabsTrigger 
               value="upcoming" 
-              className="flex-1 rounded-xl py-3.5 text-sm sm:text-base font-bold cursor-pointer data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md data-[state=active]:shadow-primary/10 transition-all text-center"
+              className="flex-1 rounded-xl py-3.5 text-sm sm:text-base font-bold cursor-pointer transition-all duration-200 text-center data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-[0_4px_12px_rgba(0,0,0,0.06)] data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground data-[state=inactive]:hover:bg-card/40"
             >
               À venir ({upcomingEvents.length})
             </TabsTrigger>
             <TabsTrigger 
               value="past" 
-              className="flex-1 rounded-xl py-3.5 text-sm sm:text-base font-bold cursor-pointer data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md data-[state=active]:shadow-primary/10 transition-all text-center"
+              className="flex-1 rounded-xl py-3.5 text-sm sm:text-base font-bold cursor-pointer transition-all duration-200 text-center data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-[0_4px_12px_rgba(0,0,0,0.06)] data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground data-[state=inactive]:hover:bg-card/40"
             >
               Passés ({pastEvents.length})
             </TabsTrigger>

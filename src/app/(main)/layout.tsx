@@ -94,8 +94,8 @@ export default function MainLayout({
       </header>
 
       {/* Floating Main Content Card */}
-      <main className="flex-1 w-full max-w-6xl mx-auto p-2.5 sm:p-6 md:p-8 flex flex-col justify-start pb-24 md:pb-8">
-        <div className="w-full bg-card/60 dark:bg-card/35 backdrop-blur-md border border-white/60 dark:border-border/10 shadow-xl rounded-[1.75rem] sm:rounded-[2.5rem] p-4 sm:p-8 md:p-10 transition-all flex-1 flex flex-col">
+      <main className="flex-1 w-full max-w-6xl mx-auto p-4 sm:p-6 md:p-8 flex flex-col justify-start pb-24 md:pb-8">
+        <div className="w-full transition-all flex-1 flex flex-col">
           {children}
         </div>
       </main>
