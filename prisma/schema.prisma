@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String            @id @default(uuid())
+  email         String            @unique
+  name          String?
+  image         String?
+  
+  memberships   GroupMember[]
+  createdEvents Event[]           @relation("EventCreator")
+  rsvps         Rsvp[]
+  invitations   EventInvitation[]
+  
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+}
+
+model Group {
+  id          String        @id @default(uuid())
+  name        String
+  description String?
+  
+  members     GroupMember[]
+  events      Event[]
+  
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model GroupMember {
+  id        String   @id @default(uuid())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  
+  group     Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  groupId   String
+  
+  role      Role     @default(MEMBER)
+  
+  createdAt DateTime @default(now())
+
+  @@unique([userId, groupId])
+  @@index([userId])
+  @@index([groupId])
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+model Event {
+  id          String            @id @default(uuid())
+  title       String
+  description String?
+  date        DateTime
+  isPrivate   Boolean           @default(false)
+  
+  group       Group             @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  groupId     String
+  
+  creator     User              @relation("EventCreator", fields: [creatorId], references: [id])
+  creatorId   String
+
+  rsvps       Rsvp[]
+  invitations EventInvitation[]
+
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([groupId])
+  @@index([date])
+}
+
+model EventInvitation {
+  id        String   @id @default(uuid())
+  
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  eventId   String
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  
+  createdAt DateTime @default(now())
+
+  @@unique([eventId, userId])
+  @@index([userId])
+}
+
+model Rsvp {
+  id        String     @id @default(uuid())
+  
+  event     Event      @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  eventId   String
+  
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  
+  status    RsvpStatus @default(PENDING)
+  
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@unique([eventId, userId])
+  @@index([eventId])
+  @@index([userId])
+}
+
+enum RsvpStatus {
+  ATTENDING
+  ABSENT
+  MAYBE
+  PENDING
+}
