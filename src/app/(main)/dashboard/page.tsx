@@ -61,22 +61,22 @@ export default function DashboardPage() {
     switch (status) {
       case "ATTENDING": 
         return (
-          <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/20 rounded-full px-3 py-1 text-xs font-semibold">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
+          <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs sm:text-sm font-bold shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
             Présent
           </span>
         );
       case "ABSENT": 
         return (
-          <span className="inline-flex items-center gap-1.5 bg-destructive/10 text-destructive dark:text-red-300 border border-destructive/20 rounded-full px-3 py-1 text-xs font-semibold">
-            <span className="h-1.5 w-1.5 rounded-full bg-destructive dark:bg-red-400"></span>
+          <span className="inline-flex items-center gap-1.5 bg-destructive/10 text-destructive dark:text-red-300 border border-destructive/20 rounded-full px-4 py-1.5 text-xs sm:text-sm font-bold shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-destructive dark:bg-red-400"></span>
             Absent
           </span>
         );
       default: 
         return (
-          <span className="inline-flex items-center gap-1.5 bg-amber-500/10 text-amber-800 dark:text-amber-300 border border-amber-500/20 rounded-full px-3 py-1 text-xs font-semibold">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-500 dark:bg-amber-400 animate-pulse"></span>
+          <span className="inline-flex items-center gap-1.5 bg-amber-500/10 text-amber-800 dark:text-amber-300 border border-amber-500/20 rounded-full px-4 py-1.5 text-xs sm:text-sm font-bold shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-amber-500 dark:bg-amber-400 animate-pulse"></span>
             En attente
           </span>
         );
@@ -88,10 +88,10 @@ export default function DashboardPage() {
       <CardHeader className="pb-3 pt-5 px-5 sm:pb-4 sm:pt-6 sm:px-6">
         <div className="flex justify-between items-start gap-2">
           <div className="space-y-1.5">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-accent-foreground/90 bg-accent/20 px-2.5 py-0.5 rounded-full">
+            <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-accent-foreground/95 bg-accent/25 px-3 py-1 rounded-full">
               {event.groupName}
             </span>
-            <CardTitle className="text-lg sm:text-xl font-bold text-foreground leading-snug group-hover:text-primary transition-colors pt-1">
+            <CardTitle className="text-xl sm:text-2xl font-black text-foreground leading-tight group-hover:text-primary transition-colors pt-1">
               {event.title}
             </CardTitle>
           </div>
@@ -99,36 +99,18 @@ export default function DashboardPage() {
         </div>
       </CardHeader>
       
-      <CardContent className="flex-1 px-5 pb-5 sm:px-6 sm:pb-6 space-y-3.5 text-sm text-muted-foreground">
-        <div className="flex items-center gap-2.5">
-          <Calendar className="h-4.5 w-4.5 text-muted-foreground/70" />
-          <span className="font-medium text-foreground/80 text-xs sm:text-sm">
+      <CardContent className="flex-1 px-5 pb-6 sm:px-6 sm:pb-7 space-y-4 text-muted-foreground">
+        <div className="flex items-center gap-3">
+          <Calendar className="h-5 w-5 text-primary/80 shrink-0" />
+          <span className="font-bold text-foreground/80 text-sm sm:text-base capitalize">
             {event.date.toLocaleDateString("fr-FR", { weekday: 'long', day: 'numeric', month: 'long' })}
           </span>
         </div>
-        <div className="flex items-center gap-2.5">
-          <Clock className="h-4.5 w-4.5 text-muted-foreground/70" />
-          <span className="text-xs font-semibold">
+        <div className="flex items-center gap-3">
+          <Clock className="h-5 w-5 text-primary/80 shrink-0" />
+          <span className="font-bold text-foreground/85 text-sm sm:text-base">
             {event.date.toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' })}
           </span>
-        </div>
-        <div className="flex items-center gap-2.5 pt-1">
-          <Avatar className="h-6 w-6 border border-border/60">
-            <AvatarImage src={event.creator.avatar} />
-            <AvatarFallback>{event.creator.name[0]}</AvatarFallback>
-          </Avatar>
-          <span className="text-xs font-medium text-muted-foreground">
-            Créé par <strong className="text-foreground/80">{event.creator.name}</strong>
-          </span>
-          {event.isPrivate ? (
-            <span className="ml-auto flex items-center gap-1 text-[10px] font-bold text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">
-              <Lock className="h-3 w-3" /> Privé
-            </span>
-          ) : (
-            <span className="ml-auto flex items-center gap-1 text-[10px] font-bold text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">
-              <Unlock className="h-3 w-3" /> Public
-            </span>
-          )}
         </div>
       </CardContent>
 
@@ -211,17 +193,17 @@ export default function DashboardPage() {
 
       {/* Tabs and Event Cards Grid */}
       <Tabs defaultValue="upcoming" className="w-full">
-        <div className="flex items-center justify-between border-b border-border/40 pb-3 mb-6">
-          <TabsList className="bg-secondary/60 border border-border/40 p-1.5 rounded-full flex gap-1 h-auto">
+        <div className="w-full border-b border-border/40 pb-5 mb-8">
+          <TabsList className="w-full bg-secondary/50 border border-border/30 p-2 rounded-2xl flex gap-2 h-auto">
             <TabsTrigger 
               value="upcoming" 
-              className="rounded-full px-5 py-2 text-xs font-semibold cursor-pointer data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all"
+              className="flex-1 rounded-xl py-3.5 text-sm sm:text-base font-bold cursor-pointer data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md data-[state=active]:shadow-primary/10 transition-all text-center"
             >
               À venir ({upcomingEvents.length})
             </TabsTrigger>
             <TabsTrigger 
               value="past" 
-              className="rounded-full px-5 py-2 text-xs font-semibold cursor-pointer data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all"
+              className="flex-1 rounded-xl py-3.5 text-sm sm:text-base font-bold cursor-pointer data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md data-[state=active]:shadow-primary/10 transition-all text-center"
             >
               Passés ({pastEvents.length})
             </TabsTrigger>
